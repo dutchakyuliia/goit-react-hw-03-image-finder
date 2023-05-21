@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Searchbar.css';
+import PropTypes from 'prop-types';
 export class Searchbar extends Component {
   state = {
   value: ""

@@ -6,15 +6,21 @@ import { ImageGallery } from './ImageGallery';
 export class App extends Component {
   state = {
     searchImages: '',
+    page: 1
   };
   handleSearch = searchImages => {
-    this.setState({ searchImages });
+    this.setState({ searchImages, page: 1 });
   };
+  
+addNewPage = () => {
+  this.setState({ page: this.state.page + 1 });
+  }; 
+
   render() {
     return (
       <div>
         <Searchbar handleSearch={this.handleSearch}></Searchbar>
-        <ImageGallery searchImages={this.state.searchImages}></ImageGallery>
+        <ImageGallery addNewPage={this.addNewPage} page={this.state.page} searchImages={this.state.searchImages}></ImageGallery>
       
       </div>
     );

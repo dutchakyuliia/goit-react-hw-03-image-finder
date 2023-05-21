@@ -5,9 +5,10 @@ import './ImageGallery.css';
 import { Loader } from 'components/Loader';
 import { LoadMoreButton } from 'components/LoadMoreButton';
 import { Modal } from 'components/Modal';
+import PropTypes from 'prop-types';
 export class ImageGallery extends Component {
   state = {
-    images: null,
+    images: [],
     isLoading: false,
     isOpen: false,
     largeImageUrl: '',
@@ -15,13 +16,20 @@ export class ImageGallery extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.searchImages !== this.props.searchImages) {
       this.setState({ isLoading: true });
-      getImages(this.props.searchImages)
+      getImages(this.props.searchImages, this.props.page)
         .then(responce => responce.json())
         .then(images => this.setState({ images: images.hits }))
         .finally(() => {
           this.setState({ isLoading: false });
         });
-  
+    } else if (prevProps.page !== this.props.page) {
+      this.setState({ isLoading: true });
+      getImages(this.props.searchImages, this.props.page)
+        .then(responce => responce.json())
+        .then(images => this.setState({images: [...this.state.images, ...images.hits]}))
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
     }
   
   }
@@ -54,8 +62,19 @@ export class ImageGallery extends Component {
             ></ImageGalleryItem>
           ))}
         </ul>
-        {images && <LoadMoreButton />}
+        {!!images.length && <LoadMoreButton addNewPage={this.props.addNewPage} />}
       </>
     );
   }
 }
+
+ImageGallery.propTypes = {
+  searchImages: PropTypes.string.isRequired,
+page: PropTypes.number.isRequired,
+  // contacts: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     id: PropTypes.string.isRequired,
+  //     name: PropTypes.string.isRequired,
+  //     number: PropTypes.number.isRequired,
+  // }))
+};
