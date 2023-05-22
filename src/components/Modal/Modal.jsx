@@ -23,7 +23,7 @@ export class Modal extends Component {
         tabIndex={0}
       >
         <div className="modal">
-          <img src={this.props.largeImageUrl} alt="image" />
+          <img src={this.props.largeImageUrl} alt="gallery" />
         </div>
       </div>
     );
