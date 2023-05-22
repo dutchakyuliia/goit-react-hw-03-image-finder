@@ -9,3 +9,13 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  setIsOpen: PropTypes.func.isRequired,
+  changeLargeImageUrl: PropTypes.func.isRequired, 
+   images: PropTypes.arrayOf(
+    PropTypes.shape({
+      largeImageURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+  }))
+};

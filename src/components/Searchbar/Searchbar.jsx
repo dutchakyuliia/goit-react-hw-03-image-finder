@@ -35,4 +35,6 @@ export class Searchbar extends Component {
     );
   }
 }
-
+Searchbar.propTypes = {
+  handleSearch: PropTypes.func.isRequired
+};

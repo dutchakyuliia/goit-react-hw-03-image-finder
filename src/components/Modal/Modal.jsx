@@ -29,3 +29,9 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  setIsOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  largeImageUrl: PropTypes.string.isRequired
+};

@@ -26,12 +26,13 @@ export class ImageGallery extends Component {
       this.setState({ isLoading: true });
       getImages(this.props.searchImages, this.props.page)
         .then(responce => responce.json())
-        .then(images => this.setState({images: [...this.state.images, ...images.hits]}))
+        .then(images =>
+          this.setState({ images: [...this.state.images, ...images.hits] })
+        )
         .finally(() => {
           this.setState({ isLoading: false });
         });
     }
-  
   }
 
   setIsOpen = newIsOpen => {
@@ -62,7 +63,9 @@ export class ImageGallery extends Component {
             ></ImageGalleryItem>
           ))}
         </ul>
-        {!!images.length && <LoadMoreButton addNewPage={this.props.addNewPage} />}
+        {!!images.length && (
+          <LoadMoreButton addNewPage={this.props.addNewPage} />
+        )}
       </>
     );
   }
@@ -70,11 +73,8 @@ export class ImageGallery extends Component {
 
 ImageGallery.propTypes = {
   searchImages: PropTypes.string.isRequired,
-page: PropTypes.number.isRequired,
-  // contacts: PropTypes.arrayOf(
-  //   PropTypes.shape({
-  //     id: PropTypes.string.isRequired,
-  //     name: PropTypes.string.isRequired,
-  //     number: PropTypes.number.isRequired,
-  // }))
+  page: PropTypes.number.isRequired,
+  images: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };

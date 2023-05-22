@@ -7,5 +7,8 @@ export class LoadMoreButton extends Component {
         <button className="button-load" onClick={this.props.addNewPage}>Load more</button>
     )
 }
-
 }
+
+LoadMoreButton.propTypes = {
+  addNewPage: PropTypes.func.isRequired
+};
