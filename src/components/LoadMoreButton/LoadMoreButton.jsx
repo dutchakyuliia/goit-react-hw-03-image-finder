@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import "./LoadMoreButton.css"
 import PropTypes from 'prop-types';
+import css from "./LoadMoreButton.module.css";
 export class LoadMoreButton extends Component {
     render() {
         return (
-        <button className="button-load" onClick={this.props.addNewPage}>Load more</button>
+          <button className={css.buttonLoad} onClick={this.props.addNewPage}>Load more</button>
     )
 }
 }

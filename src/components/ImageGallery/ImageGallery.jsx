@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { getImages } from 'components/services/getImages';
+import { getImages } from 'services/getImages';
 import { ImageGalleryItem } from 'components/ImageGalleryItem';
-import './ImageGallery.css';
+import css from './ImageGallery.module.css';
 import { Loader } from 'components/Loader';
-import { LoadMoreButton } from 'components/LoadMoreButton';
 import { Modal } from 'components/Modal';
 import PropTypes from 'prop-types';
+import { LoadMoreButton } from 'components/LoadMoreButton';
 export class ImageGallery extends Component {
   state = {
     images: [],
@@ -53,7 +53,7 @@ export class ImageGallery extends Component {
           setIsOpen={this.setIsOpen}
           isOpen={this.state.isOpen}
         ></Modal>
-        <ul className="gallery">
+        <ul className={css.gallery}>
           {images?.map(image => (
             <ImageGalleryItem
               image={image}
